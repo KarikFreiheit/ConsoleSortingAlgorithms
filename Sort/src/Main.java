@@ -1,18 +1,45 @@
+import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
+import java.util.Scanner;
+
 import static java.lang.Integer.MAX_VALUE;
 
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
+        int bars = 1000;
+        Scanner sc = new Scanner(System.in);
+        Integer[] values;
+        System.out.print("Input 1 for an Imperfect Array or Input 2 for a perfect Array: ");
+        if(sc.nextInt() == 1){
+             values = generateImperfectArray(bars);
 
+        }else{
+            values = generatePerfectArray(bars);
 
-        Integer[] values = generateImperfectArray(15);
+        }
+        System.out.print("Generated Array: ");
         drawArray(values);
-        selectionSort(values);
+        System.out.println("Choose your sorting algorithm: ");
+        System.out.println("1 : Selection Sort");
+        System.out.println("2 : Bubble Sort");
+        System.out.println("3 : Insertion Sort");
+        switch (sc.nextInt()){
+            case 1:
+                selectionSort(values);
+                break;
+            case 2:
+                bubbleSort(values);
+                break;
+            case 3: insertionSort(values);
+                break;
+        }
+
+
 
 
 
@@ -22,6 +49,8 @@ public class Main {
 
     //Bubble Sort
     public static void bubbleSort(Integer[] array) throws InterruptedException {
+        final long startTime = System.currentTimeMillis();
+
         for(int i = 0; i < array.length; i++){
             for(int j = 0; j < array.length-i-1; j++){
                 int a = array[j];
@@ -29,17 +58,20 @@ public class Main {
                 if(a>b) {
                     swap(array, j, j + 1);
                 }
-                 // Will output each step of the process
-                drawArray(array);
+
             }
         }
-        //Outputs only the finished array
+        final long endTime = System.currentTimeMillis();
+
         drawArray(array);
+        System.out.print("Time: " + (endTime - startTime)  + "ms");
+
     }
 
     //Insertion Sort
 
     public static void insertionSort(Integer[] array){
+        final long startTime = System.currentTimeMillis();
         int n = array.length;
         for(int i = 1; i < n; ++i){
 
@@ -51,17 +83,18 @@ public class Main {
                     j -= 1;
                 }
                 array[j + 1] = k;
-            // Will output each step of the process
-            drawArray(array);
-
         }
+        final long endTime = System.currentTimeMillis();
         drawArray(array);
+        System.out.print("Time: " + (endTime - startTime) + "ms");
+
 
 
     }
 
     //Selection Sort
     public static void selectionSort(Integer[] array){
+        final long startTime = System.currentTimeMillis();
 
         int j = array.length;
         for(int i = 0; i < j - 1; i++){
@@ -71,14 +104,15 @@ public class Main {
                 {
                     index = k;
                 }
-
             }
 
             int temp = array[index];
             array[index] = array[i];
             array[i] = temp;
         }
+        final long endTime = System.currentTimeMillis();
         drawArray(array);
+        System.out.println("Time: " + (endTime - startTime)  + "ms");
 
     }
 
@@ -130,12 +164,17 @@ public class Main {
             for (int j = array.length; j > 0; j--) {
                 if (array[j - 1] <= i + 1) {
                     System.out.print("\u2588 ");
+
                 }
-                else {
+                else{
                     System.out.print("  ");
+
                 }
+
             }
             System.out.println();
+
+
         }
     }
 }

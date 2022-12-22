@@ -11,12 +11,16 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
+        choose();
+
+    }
+    public static void choose() throws InterruptedException {
         int bars = 1000;
         Scanner sc = new Scanner(System.in);
         Integer[] values;
         System.out.print("Input 1 for an Imperfect Array or Input 2 for a perfect Array: ");
         if(sc.nextInt() == 1){
-             values = generateImperfectArray(bars);
+            values = generateImperfectArray(bars);
 
         }else{
             values = generatePerfectArray(bars);
@@ -39,11 +43,6 @@ public class Main {
                 break;
         }
 
-
-
-
-
-
     }
     //ALGORITHMS=======================================================================
 
@@ -64,13 +63,13 @@ public class Main {
         final long endTime = System.currentTimeMillis();
 
         drawArray(array);
-        System.out.print("Time: " + (endTime - startTime)  + "ms");
-
+        System.out.println("Time: " + (endTime - startTime)  + "ms");
+        choose();
     }
 
     //Insertion Sort
 
-    public static void insertionSort(Integer[] array){
+    public static void insertionSort(Integer[] array) throws InterruptedException {
         final long startTime = System.currentTimeMillis();
         int n = array.length;
         for(int i = 1; i < n; ++i){
@@ -86,14 +85,15 @@ public class Main {
         }
         final long endTime = System.currentTimeMillis();
         drawArray(array);
-        System.out.print("Time: " + (endTime - startTime) + "ms");
+        System.out.println("Time: " + (endTime - startTime) + "ms");
+        choose();
 
 
 
     }
 
     //Selection Sort
-    public static void selectionSort(Integer[] array){
+    public static void selectionSort(Integer[] array) throws InterruptedException {
         final long startTime = System.currentTimeMillis();
 
         int j = array.length;
@@ -113,6 +113,7 @@ public class Main {
         final long endTime = System.currentTimeMillis();
         drawArray(array);
         System.out.println("Time: " + (endTime - startTime)  + "ms");
+        choose();
 
     }
 
